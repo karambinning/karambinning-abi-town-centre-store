@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Abi Town Centre Store · 77 High Street, Aylesbury · HP20 1SA</title>
+  <meta name="description" content="Abi Town Centre Store — an independent corner shop on Aylesbury's High Street. 77 High Street, HP20 1SA." />
+  <meta name="theme-color" content="#3B2A1E" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%23F5EEDC%22/><text x=%2216%22 y=%2222%22 font-family=%22Georgia%22 font-size=%2218%22 font-weight=%22700%22 fill=%22%233B2A1E%22 text-anchor=%22middle%22>a</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #F5EEDC;
+      --paper-deep: #ECE2C8;
+      --kraft: #D9C4A3;
+      --kraft-deep: #C9AE82;
+      --espresso: #A1764B;
+      --ink: #3B2A1E;
+      --ink-deep: #221710;
+      --accent: #7E3C1F;
+
+      --display: "Libre Baskerville", "Georgia", "Times New Roman", serif;
+      --body:    "Work Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+      --pad: clamp(1.25rem, 4vw, 3rem);
+      --rhythm: clamp(.98rem, .55rem + .8vw, 1.12rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: var(--rhythm);
+      line-height: 1.55;
+      font-weight: 400;
+      letter-spacing: .005em;
+      overflow-x: hidden;
+      position: relative;
+    }
+    /* paper grain — kills digital flatness */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      mix-blend-mode: multiply;
+      opacity: .35;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.23  0 0 0 0 0.16  0 0 0 0 0.12  0 0 0 0.18 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+
+    p, li, dd { text-wrap: pretty; hyphens: auto; }
+    h1, h2, h3 { text-wrap: balance; }
+    a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    a:hover { text-decoration-thickness: 2px; }
+
+    /* ── MARQUEE STRIP (top) ─────────────────────────── */
+    .ticker {
+      position: relative;
+      background: var(--ink);
+      color: var(--paper);
+      overflow: hidden;
+      border-bottom: 1px solid var(--ink-deep);
+    }
+    .ticker__track {
+      display: flex;
+      gap: 2.25rem;
+      white-space: nowrap;
+      padding: .65rem 0;
+      font-family: var(--display);
+      font-weight: 400;
+      letter-spacing: .12em;
+      font-size: .78rem;
+      text-transform: uppercase;
+      animation: scroll 42s linear infinite;
+      width: max-content;
+    }
+    .ticker__track span { display: inline-flex; align-items: center; gap: 2.25rem; }
+    .ticker__track span::after { content: "✦"; color: var(--kraft); font-size: .8rem; }
+    @keyframes scroll { to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) {
+      .ticker__track { animation: none; transform: translateX(0); }
+    }
+
+    /* ── HEADER ──────────────────────────────────────── */
+    header.top {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1.5rem var(--pad) .75rem;
+      gap: 1rem;
+    }
+    .wordmark {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: .01em;
+      line-height: 1;
+    }
+    .wordmark em { font-style: italic; color: var(--espresso); }
+    .nav {
+      font-family: var(--body);
+      font-size: .82rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      display: inline-flex;
+      gap: 1.4rem;
+    }
+    .nav a {
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav a::after {
+      content: "";
+      position: absolute; left: 0; right: 100%; bottom: 0;
+      height: 1px;
+      background: currentColor;
+      transition: right .35s cubic-bezier(.2,.6,.2,1);
+    }
+    .nav a:hover::after { right: 0; }
+
+    /* ── HERO (asymmetric, oversized) ────────────────── */
+    .hero {
+      position: relative;
+      padding: 1rem var(--pad) clamp(2rem, 6vw, 4.5rem);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(1.5rem, 4vw, 3rem);
+    }
+    @media (min-width: 880px) {
+      .hero { grid-template-columns: 1.35fr .85fr; align-items: end; }
+    }
+
+    .hero__eyebrow {
+      font-family: var(--body);
+      font-size: .78rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--espresso);
+      margin: 0 0 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .9rem;
+    }
+    .hero__eyebrow::before,
+    .hero__eyebrow::after {
+      content: "";
+      width: 2.25rem;
+      height: 1px;
+      background: currentColor;
+      opacity: .6;
+    }
+
+    .hero__title {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(3.4rem, 13vw, 11.5rem);
+      line-height: .86;
+      letter-spacing: -0.035em;
+      color: var(--ink-deep);
+    }
+    .hero__title .amp {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--espresso);
+      display: inline-block;
+      transform: translateY(.08em);
+    }
+    .hero__title .lower {
+      display: block;
+      font-style: italic;
+      font-weight: 400;
+      font-size: .35em;
+      letter-spacing: -0.005em;
+      color: var(--espresso);
+      margin-top: .4em;
+      padding-left: .25em;
+    }
+
+    /* postcode badge as artwork */
+    .hero__badge {
+      align-self: end;
+      justify-self: start;
+      padding: 1.5rem 1.75rem;
+      border: 1px solid var(--ink);
+      background: var(--paper-deep);
+      max-width: 32rem;
+      position: relative;
+    }
+    .hero__badge::before {
+      content: "";
+      position: absolute; inset: 6px;
+      border: 1px solid var(--ink);
+      opacity: .25;
+      pointer-events: none;
+    }
+    .hero__badge dt {
+      font-family: var(--body);
+      font-size: .7rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--espresso);
+      margin-bottom: .35rem;
+    }
+    .hero__badge dd {
+      margin: 0 0 1rem;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      line-height: 1.25;
+    }
+    .hero__badge dd:last-child { margin-bottom: 0; }
+    .hero__badge .pc {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      letter-spacing: .14em;
+    }
+
+    /* hairline rule above eyebrow */
+    .hero__lead { position: relative; }
+    .hero__lead::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: var(--ink);
+      opacity: .25;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── COLOURED SLAB · about ───────────────────────── */
+    .slab {
+      background: var(--ink);
+      color: var(--paper);
+      padding: clamp(3rem, 8vw, 6rem) var(--pad);
+      position: relative;
+      z-index: 2;
+    }
+    .slab__inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(1.5rem, 4vw, 3rem);
+      max-width: 78rem;
+      margin: 0 auto;
+    }
+    @media (min-width: 880px) {
+      .slab__inner { grid-template-columns: .4fr 1fr; align-items: start; }
+    }
+    .slab__label {
+      font-family: var(--body);
+      font-size: .75rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--kraft);
+    }
+    .slab__copy {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(1.35rem, 2.6vw, 2rem);
+      line-height: 1.35;
+      letter-spacing: -0.005em;
+      margin: 0;
+      color: var(--paper);
+    }
+    .slab__copy em { color: var(--kraft); font-style: italic; }
+    .slab__sig {
+      margin-top: 1.75rem;
+      font-family: var(--body);
+      font-size: .82rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--kraft);
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .slab__sig::before {
+      content: "";
+      display: inline-block;
+      width: 2.5rem; height: 1px;
+      background: var(--kraft);
+    }
+
+    /* ── FIND US — letterhead block ──────────────────── */
+    .find {
+      padding: clamp(3rem, 8vw, 6rem) var(--pad);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+    @media (min-width: 880px) {
+      .find { grid-template-columns: 1fr 1fr; }
+    }
+    .find__section h2 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      letter-spacing: -.01em;
+      margin: 0 0 1.75rem;
+      line-height: 1;
+      color: var(--ink-deep);
+    }
+    .find__eyebrow {
+      font-family: var(--body);
+      font-size: .72rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--espresso);
+      margin: 0 0 1rem;
+    }
+
+    /* letterhead — address typed like an envelope */
+    .letterhead {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+      line-height: 1.5;
+      margin: 0;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+    }
+    .letterhead .name {
+      display: block;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      margin-bottom: .35rem;
+    }
+    .letterhead .pc {
+      display: block;
+      margin-top: .35rem;
+      letter-spacing: .15em;
+      font-weight: 700;
+    }
+
+    .find__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .85rem;
+      margin-top: 1.75rem;
+      padding: .9rem 1.4rem .95rem;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--body);
+      font-weight: 500;
+      font-size: .82rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--ink);
+      transition: background .25s ease, color .25s ease, transform .25s ease;
+    }
+    .find__cta::after {
+      content: "→";
+      font-family: var(--display);
+      font-size: 1rem;
+      transition: transform .3s cubic-bezier(.2,.6,.2,1);
+    }
+    .find__cta:hover {
+      background: var(--paper);
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .find__cta:hover::after { transform: translateX(.35rem); }
+
+    /* notes column */
+    .notes p {
+      font-family: var(--display);
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+      line-height: 1.55;
+      color: var(--ink);
+      margin: 0 0 1.25rem;
+    }
+    .notes p:last-child { margin-bottom: 0; }
+    .notes .meta {
+      font-family: var(--body);
+      font-style: normal;
+      font-size: .82rem;
+      letter-spacing: .04em;
+      color: var(--espresso);
+      line-height: 1.7;
+    }
+
+    /* ── ORIENTATION map sketch (CSS-drawn, honest) ──── */
+    .map {
+      grid-column: 1 / -1;
+      margin-top: clamp(1rem, 3vw, 2rem);
+      padding: clamp(1.5rem, 3vw, 2rem);
+      background: var(--paper-deep);
+      border: 1px solid var(--kraft);
+      position: relative;
+    }
+    .map__title {
+      font-family: var(--body);
+      font-size: .72rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--espresso);
+      margin: 0 0 1rem;
+    }
+    .map__sketch {
+      position: relative;
+      height: clamp(160px, 22vw, 220px);
+      background:
+        repeating-linear-gradient(90deg, transparent 0 39px, rgba(59,42,30,.06) 39px 40px),
+        repeating-linear-gradient(0deg,  transparent 0 39px, rgba(59,42,30,.06) 39px 40px),
+        var(--paper);
+      border: 1px solid var(--ink);
+      overflow: hidden;
+    }
+    .map__street {
+      position: absolute;
+      left: 0; right: 0;
+      top: 58%;
+      height: 2px;
+      background: var(--ink);
+    }
+    .map__street::before,
+    .map__street::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: var(--ink);
+      opacity: .35;
+    }
+    .map__street::before { top: -10px; }
+    .map__street::after  { top: 12px; }
+    .map__street-label {
+      position: absolute;
+      left: 1rem;
+      top: 64%;
+      font-family: var(--display);
+      font-style: italic;
+      font-size: .85rem;
+      letter-spacing: .12em;
+      color: var(--ink);
+    }
+    .map__pin {
+      position: absolute;
+      left: 46%;
+      top: 47%;
+      width: 14px;
+      height: 14px;
+      background: var(--accent);
+      border: 2px solid var(--ink-deep);
+      border-radius: 50%;
+      box-shadow: 0 0 0 6px rgba(126,60,31,.18);
+    }
+    .map__pin-label {
+      position: absolute;
+      left: calc(46% + 24px);
+      top: 38%;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .04em;
+      max-width: 14rem;
+    }
+    .map__compass {
+      position: absolute;
+      right: .85rem; top: .85rem;
+      width: 38px; height: 38px;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: .7rem;
+      letter-spacing: .15em;
+      background: var(--paper);
+    }
+    .map__compass::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      width: 1px; height: 12px;
+      background: var(--accent);
+    }
+    .map__legend {
+      margin-top: .9rem;
+      font-family: var(--body);
+      font-size: .78rem;
+      color: var(--ink);
+      opacity: .8;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .map__legend span { display: inline-flex; align-items: center; gap: .45rem; }
+    .map__legend i {
+      display: inline-block;
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border: 1px solid var(--ink-deep);
+      border-radius: 50%;
+    }
+
+    /* ── REVEAL ──────────────────────────────────────── */
+    @supports (animation-timeline: view()) {
+      .reveal {
+        animation: rise both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 28%;
+      }
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(1.5rem); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { animation: none !important; opacity: 1; transform: none; }
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer.foot {
+      padding: clamp(2.5rem, 5vw, 4rem) var(--pad) 2rem;
+      background: var(--kraft);
+      color: var(--ink-deep);
+      position: relative;
+      z-index: 2;
+    }
+    .foot__row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      max-width: 78rem; margin: 0 auto 2.5rem;
+    }
+    @media (min-width: 720px) {
+      .foot__row { grid-template-columns: repeat(3, 1fr); }
+    }
+    .foot__col h3 {
+      font-family: var(--body);
+      font-size: .7rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--ink-deep);
+      opacity: .7;
+      margin: 0 0 .9rem;
+    }
+    .foot__col p, .foot__col address {
+      font-family: var(--display);
+      font-style: normal;
+      font-size: 1rem;
+      line-height: 1.55;
+      margin: 0;
+    }
+    .foot__big {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      line-height: .9;
+      letter-spacing: -.025em;
+      margin: 0 0 1.25rem;
+      max-width: 78rem;
+      margin-left: auto; margin-right: auto;
+    }
+    .foot__big em { font-weight: 400; font-style: italic; color: var(--ink-deep); opacity: .65; }
+    .foot__rule {
+      max-width: 78rem;
+      margin: 1.5rem auto;
+      height: 1px;
+      background: var(--ink-deep);
+      opacity: .25;
+    }
+    .foot__meta {
+      max-width: 78rem; margin: 0 auto;
+      font-family: var(--body);
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink-deep);
+      opacity: .7;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>HP20 1SA</span>
+      <span>77 High Street</span>
+      <span>Aylesbury Town Centre</span>
+      <span>Independent · Locally run</span>
+      <span>Open on the High Street</span>
+      <span>HP20 1SA</span>
+      <span>77 High Street</span>
+      <span>Aylesbury Town Centre</span>
+      <span>Independent · Locally run</span>
+      <span>Open on the High Street</span>
+      <span>HP20 1SA</span>
+      <span>77 High Street</span>
+      <span>Aylesbury Town Centre</span>
+      <span>Independent · Locally run</span>
+      <span>Open on the High Street</span>
+      <span>HP20 1SA</span>
+      <span>77 High Street</span>
+      <span>Aylesbury Town Centre</span>
+      <span>Independent · Locally run</span>
+      <span>Open on the High Street</span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="top">
+    <div class="wordmark">Abi <em>Town Centre</em> Store</div>
+    <nav class="nav" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#find">Find us</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__lead reveal">
+      <p class="hero__eyebrow">Aylesbury · High Street</p>
+      <h1 class="hero__title">
+        Abi.
+        <span class="lower">Town&nbsp;Centre Store</span>
+      </h1>
+    </div>
+
+    <dl class="hero__badge reveal" aria-label="Location card">
+      <dt>The address</dt>
+      <dd>
+        77 High Street<br>
+        Aylesbury, Bucks
+      </dd>
+      <dt>The postcode</dt>
+      <dd class="pc">HP20&nbsp;1SA</dd>
+    </dl>
+  </section>
+
+  <!-- SLAB — about -->
+  <section class="slab" id="about">
+    <div class="slab__inner">
+      <div class="slab__label reveal">A note ·<br>00<sub style="font-variant:small-caps;">1</sub></div>
+      <div class="reveal">
+        <p class="slab__copy">
+          A corner shop in the middle of <em>Aylesbury</em> — sitting on the High Street, a short walk from the Market Square. The kind of place you drop into when you need a pint of milk, a paper, or whatever the trip home forgot.
+        </p>
+        <div class="slab__sig">On the High Street · HP20&nbsp;1SA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIND US -->
+  <section class="find" id="find">
+
+    <div class="find__section reveal">
+      <p class="find__eyebrow">Where to find us</p>
+      <h2>On the High Street, town-centre side.</h2>
+
+      <address class="letterhead">
+        <span class="name">Abi Town Centre Store</span>
+        77 High Street<br>
+        Aylesbury<br>
+        Buckinghamshire
+        <span class="pc">HP20&nbsp;1SA</span>
+      </address>
+
+      <a class="find__cta"
+         href="https://www.google.com/maps/search/?api=1&query=Abi+Town+Centre+Store+77+High+Street+Aylesbury+HP20+1SA"
+         target="_blank" rel="noopener">
+        Open in Google Maps
+      </a>
+    </div>
+
+    <div class="find__section notes reveal">
+      <p class="find__eyebrow">Walking in</p>
+      <p>
+        Number seventy-seven sits along the pedestrianised stretch of Aylesbury's High Street — the run between the Market Square and the top end of the town centre.
+      </p>
+      <p>
+        Walking distance from the Market Square and the Friars Square shopping centre; about ten minutes on foot from Aylesbury railway station.
+      </p>
+      <p class="meta">
+        Pedestrian access only along this stretch of High Street.<br>
+        Nearest town-centre parking: Friars Square multi-storey.
+      </p>
+    </div>
+
+    <!-- Orientation sketch (CSS only — honest, schematic, not a fake map) -->
+    <figure class="map reveal" aria-label="Orientation sketch — High Street, Aylesbury">
+      <p class="map__title">Orientation · not to scale</p>
+      <div class="map__sketch" role="img" aria-label="A simple sketch showing 77 High Street marked along Aylesbury's High Street.">
+        <div class="map__compass" aria-hidden="true">N</div>
+        <div class="map__street"></div>
+        <div class="map__street-label">High Street</div>
+        <div class="map__pin" aria-hidden="true"></div>
+        <div class="map__pin-label">No.&nbsp;77 — Abi Town Centre Store</div>
+      </div>
+      <div class="map__legend">
+        <span><i></i> 77 High Street, HP20 1SA</span>
+        <span>Pedestrianised section</span>
+      </div>
+    </figure>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <p class="foot__big">
+      Seventy&#8209;seven <em>High&nbsp;Street.</em>
+    </p>
+    <div class="foot__rule"></div>
+
+    <div class="foot__row">
+      <div class="foot__col">
+        <h3>The shop</h3>
+        <p>
+          Abi Town Centre Store<br>
+          Independent · Aylesbury
+        </p>
+      </div>
+      <div class="foot__col">
+        <h3>The address</h3>
+        <address>
+          77 High Street<br>
+          Aylesbury, Bucks<br>
+          HP20&nbsp;1SA
+        </address>
+      </div>
+      <div class="foot__col">
+        <h3>Find us</h3>
+        <p>
+          <a href="https://www.google.com/maps/search/?api=1&query=77+High+Street+Aylesbury+HP20+1SA"
+             target="_blank" rel="noopener">
+            Open in Google Maps&nbsp;↗
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <div class="foot__meta">
+      <span>HP20&nbsp;1SA · Aylesbury · Bucks</span>
+      <span>© Abi Town Centre Store</span>
+    </div>
+  </footer>
+
+</body>
+</html>
